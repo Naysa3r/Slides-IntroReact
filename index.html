@@ -48,6 +48,185 @@
 						<img src="./src/images/Websites-use-React.png" alt="popular react websites">
 					</section>
 				</section>
+				<section>
+					<section>
+						<h3>Add React to your project ⚙️</h3>
+					</section>
+					<section>
+						<h4>Step 1: Add a DOM Container to the HTML</h4>
+						<pre><code class="HTML" data-trim contenteditable="false" style="font-size: 18px;">
+<!-- ... existing HTML ... -->
+<div id="like_button_container"></div>
+<!-- ... existing HTML ... -->				
+						</code></pre>
+					</section>
+					<section>
+						<h4>Step 2: Add the Script Tags</h4>
+						<pre><code class="HTML" data-trim contenteditable="false" style="font-size: 18px;">
+  <!-- ... other HTML ... -->
+
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <!-- Load our React component. -->
+  <script src="like_button.js"></script>
+</body>		
+						</code></pre>
+					</section>
+					<section>
+						<h4>Step 3: Create a React Component</h4>
+						<pre><code class="javascript" data-trim contenteditable="false" style="font-size: 18px;">
+// ... the starter code you pasted ...
+
+const domContainer = document.querySelector('#like_button_container');
+const root = ReactDOM.createRoot(domContainer);
+root.render(e(LikeButton));
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Create React App ⚛️</h3>
+					</section>
+					<section>
+						<p>Commands to launch "Create React App" project:</p>
+						<pre>
+							<code data-trim contenteditable="false" style="font-size: 18px;">
+npx create-react-app my-app
+cd my-app
+npm start
+							</code>
+						</pre>
+						<img src="./src/images/create-react-app_install.png" alt="CreateReactApp install">
+						<p>Then open <a>http://localhost:3000/</a> to see your app.</p>
+					</section>
+				</section>
+				<section>
+					<section><h3>JSX: JavaScript + XML 🧾</h3></section>
+					<section>
+						<p>JSX:</p>
+						<pre><code class="JSX" data-trim contenteditable="false" style="font-size: 18px;">
+							const heading = <h1 className="site-heading">Hello, React</h1>
+						</code></pre>
+						<p>No JSX:</p>
+						<pre><code class="javascript" data-trim contenteditable="false" style="font-size: 18px;">
+							const heading = React.createElement('h1', { className: 'site-heading' }, 'Hello, React!');
+						</code></pre>
+					</section>
+					<section>
+						<h4>Key differences between JSX and HTML</h4>
+						<ul>
+							<li><b style="color: rgb(255, 255, 160)">className</b> is used instead of <b style="color: rgb(255, 255, 160)">class</b> for adding CSS classes, as <b style="color: rgb(255, 255, 160)">class</b> is a reserved keyword in JavaScript.</li>
+							<li>Properties and methods in JSX are camelCase - <b style="color: rgb(255, 255, 160)">onclick</b> will become <b style="color: rgb(255, 255, 160)">onClick</b>.</li>
+							<li>Self-closing tags must end in a slash - e.g. < img /></li>
+							<li>JavaScript expressions can also be embedded inside JSX using <b style="color: rgb(255, 255, 160)">curly braces</b>, including variables, functions, and properties.</li>
+						</ul>
+						<pre><code class="JSX" data-trim contenteditable="false" style="font-size: 18px;">
+const name = 'Ilya'
+const heading = <h1>Hello, {name}</h1>
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<section><h3>Components 🔩</h3></section>
+					<section>
+						<span>App.js</span>
+						<pre><code class="javascript" data-trim contenteditable="false" style="font-size: 18px;">
+import React, { Component } from 'react'
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <h1>Hello, React!</h1>
+      </div>
+    )
+  }
+}
+
+export default App
+						</code></pre>
+					</section>
+					<section>
+						<span>Simple component:</span>
+						<pre><code class="JSX" data-trim contenteditable="false" style="font-size: 18px;">
+							const SimpleComponent = () => {
+								return <div>Example</div>
+							}
+						</code></pre>
+						<span>Class component:</span>
+						<pre><code class="JSX" data-trim contenteditable="false" style="font-size: 18px;">
+							class ClassComponent extends Component {
+								render() {
+								  return <div>Example</div>
+								}
+							}
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<section><h3>Props 🗜</h3></section>
+					<section>
+						<span>Props are an effective way to pass existing data to a React component, however the component cannot change the props - they're read-only.</span>
+						<pre><code class="JSX" data-trim contenteditable="false" style="font-size: 18px;">
+							function sum(a, b) {
+								return a + b;
+							}
+						</code></pre>
+						<p>❗ All React components must act like pure functions with respect to their props.</p>
+					</section>
+				</section>
+				<section>
+					<section><h3>State ⛓</h3></section>
+					<section>
+						<span>Adding local state to a class</span>
+						<pre><code class="JSX" contenteditable="false">
+class Clock extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {date: new Date()};
+	}
+	render() {
+		return (
+		<div>
+			<h1>Hello, world!</h1>
+			<h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+		</div>
+		);
+	}
+	}
+	
+	const root = ReactDOM.createRoot(document.getElementById('root'));
+	root.render(&lt;Clock/&gt;);
+						</code></pre>
+					</section>
+					<section>
+						<span>To show that all components are truly isolated, we can create an App component that renders three &lt;Clocks&gt;:</span>
+						<pre><code class="JSX" data-trim contenteditable="false" style="font-size: 18px;">
+						function App() {
+							return (
+							<div>
+								&lt;Clock /&gt;
+								&lt;Clock /&gt;
+								&lt;Clock /&gt;
+							</div>
+							);
+						  }
+					</code></pre>
+					<a href="https://codepen.io/gaearon/pen/vXdGmd?editors=0010">Try it on Codepen</a>
+					</section>
+				</section>
+				<section>
+					<h3>Usefull links:</h3>
+					<ul>
+						<li>Official web-page of React: <a>https://reactjs.org/</a></li>
+						<li>Create React App Docs: <a>https://create-react-app.dev/docs/getting-started</a></li>
+						<li>React Tutorial: An Overview and Walkthrough: <a>https://www.taniarascia.com/getting-started-with-react/</a></li>
+						<li>CDN Links: <a>https://reactjs.org/docs/cdn-links.html</a></li>
+						<li>React courses: <a>https://ru.reactjs.org/community/courses.html</a></li>
+					</ul>
+				</section>
 			</div>
 		</div>
 
